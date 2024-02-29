@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private float _horizontalInput;
     private float _verticalInput;
+    public float speed = 5.3f;
     void Start()
     {
 
@@ -18,8 +19,8 @@ public class PlayerController : MonoBehaviour
         Vector2 pos = transform.position;
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-        pos.x += _horizontalInput * Time.deltaTime * 3;
-        pos.y += _verticalInput * Time.deltaTime * 3;
+        pos.x += _horizontalInput * Time.deltaTime * speed;
+        pos.y += _verticalInput * Time.deltaTime * speed;
         transform.position = pos;
     }
 }
