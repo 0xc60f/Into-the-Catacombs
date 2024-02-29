@@ -1,0 +1,37 @@
+name: Build Unity Project
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    
+      steps:
+        - name: Checkout project
+          uses: actions/checkout@v4
+        
+        - name: Setup Unity
+          uses: kuler90/setup-unity@v1
+          with:
+            unity-modules: windows
+        
+        - name: Build Unity
+          uses: kuler90/build-unity@v1
+          with:
+            build-target: Windows
+            build-path: ./build.zip
+        - name: Upload a Build Artifact
+          uses: actions/upload-artifact@v4.3.1
+          with:
+            # Artifact name
+            name: Unity Project
+            # A file, directory or wildcard pattern that describes what to upload
+            path: build.zip
+            
+        
+          
