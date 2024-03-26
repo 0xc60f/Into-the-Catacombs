@@ -14,11 +14,9 @@ public class PlayerController : MonoBehaviour
     private float invincibleTime = 1.2f;
     private bool isInvincible = false;
     private BoxCollider2D _boxCollider;
-    private GridLayout _gridLayout;
 
     void Start()
     {
-        _gridLayout = transform.parent.GetComponentInParent<GridLayout>();
         _rb = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
     }
@@ -59,11 +57,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(invincibleTime);
         Physics2D.IgnoreLayerCollision(3, 6, false);
         isInvincible = false;
-    }
-    private bool PlayerIsOffTile()
-    {
-        Vector2 playerPosition = transform.position;
-        Vector3Int cellPosition = _gridLayout.WorldToCell(playerPosition);
-        return cellPosition == new Vector3Int(0, 0, 0) || cellPosition == new Vector3Int(0, 1, 0) || cellPosition == new Vector3Int(1, 0, 0) || cellPosition == new Vector3Int(1, 1, 0);
     }
 }
