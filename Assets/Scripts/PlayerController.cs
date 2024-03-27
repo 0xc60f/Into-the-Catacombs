@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private float invincibleTime = 1.2f;
     private bool isInvincible = false;
     private BoxCollider2D _boxCollider;
+    int artCount = 1;
+     private AudioSource audioSource;
+     public AudioClip artCollect;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -57,4 +60,13 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 6, false);
         isInvincible = false;
     }
+   
+    public void addArt(int x){
+        artCount +=x;
+    }
+    //   public void PlayCollectSound()
+    // {
+    //     audioSource.PlayOneShot(artCollect);
+    // }
+    //couldn't get the sound effects to work so idk
 }
