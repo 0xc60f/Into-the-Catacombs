@@ -14,18 +14,42 @@ public class PlayerController : MonoBehaviour
     private float invincibleTime = 1.2f;
     private bool isInvincible = false;
     private BoxCollider2D _boxCollider;
+    int artCount = 1;
+    Animator animator;
+    Vector2 lookDirection = new Vector2(1, 0);
 
+    private AudioSource audioSource;
+    public AudioClip artCollect;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+          animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         _horizontalInput = Input.GetAxis("Horizontal");
+      
         _verticalInput = Input.GetAxis("Vertical");
+         Vector2 move = new Vector2(_horizontalInput, _verticalInput);
+
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+
+        }
+        
+        animator.SetFloat("Look X", _horizontalInput);
+      
+        if (_horizontalInput!=0){
+            animator.SetBool("Is Moving", true);
+        }
+        else{
+            animator.SetBool("Is Moving", false);
+        }
     }
 
     private void FixedUpdate()
@@ -58,4 +82,13 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 6, false);
         isInvincible = false;
     }
+   
+    public void addArt(int x){
+        artCount +=x;
+    }
+    //   public void PlayCollectSound()
+    // {
+    //     audioSource.PlayOneShot(artCollect);
+    // }
+    //couldn't get the sound effects to work so idk
 }
