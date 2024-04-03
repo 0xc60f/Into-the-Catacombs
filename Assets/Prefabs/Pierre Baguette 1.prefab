@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5592842829725727582}
   m_Layer: 6
   m_Name: Pierre Baguette 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5.3
   health: 6
+  artCollect: {fileID: 0}
