@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7546860753346966087}
   m_Layer: 6
   m_Name: Pierre Baguette 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5.3
   health: 6
+
   collectEffect: {fileID: 1510503249253587995, guid: 7cf287daf5c2b4818ab03c0bdb2d8326, type: 3}
   damageEffect: {fileID: 4545977299129630576, guid: 68c6d91c794754d118b1019ff8e1b2f4, type: 3}
   artCollect: {fileID: 0}
@@ -198,3 +199,4 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+

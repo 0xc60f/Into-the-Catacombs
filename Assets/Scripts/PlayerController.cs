@@ -20,36 +20,42 @@ Rigidbody2D _rb;
     public ParticleSystem collectEffect;
     public ParticleSystem damageEffect;
 
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
     public AudioClip artCollect;
+    public AudioClip footstepsLanding;
+    public AudioClip hitSound;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
-          animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        _audioSource.PlayOneShot(footstepsLanding);
     }
 
     // Update is called once per frame
     void Update()
     {
         _horizontalInput = Input.GetAxis("Horizontal");
-      
+
         _verticalInput = Input.GetAxis("Vertical");
-         Vector2 move = new Vector2(_horizontalInput, _verticalInput);
+        Vector2 move = new Vector2(_horizontalInput, _verticalInput);
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
-
         }
-        
+
         animator.SetFloat("Look X", _horizontalInput);
-      
-        if (_horizontalInput!=0){
+
+        if (_horizontalInput != 0)
+        {
             animator.SetBool("Is Moving", true);
         }
-        else{
+        else
+        {
             animator.SetBool("Is Moving", false);
         }
     }
@@ -65,7 +71,9 @@ Rigidbody2D _rb;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("CollisionTiles")) return;
-        if (health > 0)
+        if (isInvincible) return;
+        _audioSource.PlayOneShot(hitSound);
+        if (health > 1)
         {
             health--;
             Debug.Log("Health: " + health);
@@ -77,6 +85,7 @@ Rigidbody2D _rb;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
     private IEnumerator Invincible()
     {
         Physics2D.IgnoreLayerCollision(3, 6, true);
@@ -85,17 +94,18 @@ Rigidbody2D _rb;
         Physics2D.IgnoreLayerCollision(3, 6, false);
         isInvincible = false;
     }
+
    
     public void addArt(int x){
         artCount +=x;
       
-        // Instantiate(collectEffect, _rb.position + Vector2.up * 1.5f, Quaternion.identity);
+  
             Instantiate(collectEffect, transform.position, Quaternion.identity);
-        Debug.Log("worked");
+ 
+
+    public void PlayCollectSound()
+    {
+        _audioSource.PlayOneShot(artCollect);
+
     }
-    //   public void PlayCollectSound()
-    // {
-    //     audioSource.PlayOneShot(artCollect);
-    // }
-    //couldn't get the sound effects to work so idk
 }
