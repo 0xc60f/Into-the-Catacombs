@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class ArtCollectibles : MonoBehaviour
 {
-    public AudioClip collectSound;
-    
-   
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
-      PlayerController controller = other.GetComponent<PlayerController>();
-        if (controller != null)
-        {
-            controller.addArt(1);
-              Destroy(gameObject);
-            //a value of 1 would pass the first level, and so on so forth.
-        //    controller.PlayCollectSound();
-             // broken sound effect
-          
-            
-          
-        
-        }
+       PlayerController controller = other.gameObject.GetComponent<PlayerController>();
+       if(controller!=null){
+        controller.addArt(1);
+        Destroy(gameObject);
+       }
     }
 }

@@ -10,13 +10,15 @@ public class PlayerController : MonoBehaviour
     private float _verticalInput;
     public float speed = 5.3f;
     public int health = 6;
-    private Rigidbody2D _rb;
+Rigidbody2D _rb;
     private float invincibleTime = 1.2f;
     private bool isInvincible = false;
     private BoxCollider2D _boxCollider;
     int artCount = 1;
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
+    public ParticleSystem collectEffect;
+    public ParticleSystem damageEffect;
 
     private AudioSource audioSource;
     public AudioClip artCollect;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             health--;
             Debug.Log("Health: " + health);
+            Instantiate(damageEffect, transform.position, Quaternion.identity);
             StartCoroutine(Invincible());
         }
         else
@@ -85,6 +88,10 @@ public class PlayerController : MonoBehaviour
    
     public void addArt(int x){
         artCount +=x;
+      
+        // Instantiate(collectEffect, _rb.position + Vector2.up * 1.5f, Quaternion.identity);
+            Instantiate(collectEffect, transform.position, Quaternion.identity);
+        Debug.Log("worked");
     }
     //   public void PlayCollectSound()
     // {
