@@ -19,7 +19,7 @@ public class ArtCollectibles : MonoBehaviour
     {
        PlayerController controller = other.gameObject.GetComponent<PlayerController>();
        if(controller!=null){
-        controller.addArt(1);
+        controller.AddArt(1);
         Destroy(gameObject);
        }
     }
