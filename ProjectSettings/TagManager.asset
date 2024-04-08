@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CollisionTiles
   - GroundTiles
+  - LabTeam
+  - Projectile
   layers:
   - Default
   - TransparentFX

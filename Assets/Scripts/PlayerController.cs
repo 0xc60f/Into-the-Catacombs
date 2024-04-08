@@ -112,8 +112,10 @@ Rigidbody2D _rb;
       
   
             Instantiate(collectEffect, transform.position, Quaternion.identity);
+
  
     }
+
     public void PlayCollectSound()
     {
         _audioSource.PlayOneShot(artCollect);
