@@ -10,12 +10,13 @@ public class PlayerController : MonoBehaviour
     private float _verticalInput;
     public float speed = 5.3f;
     public int health = 6;
-Rigidbody2D _rb;
+    Rigidbody2D _rb;
     private float invincibleTime = 1.2f;
     private bool isInvincible = false;
     private BoxCollider2D _boxCollider;
     int artCount = 1;
     Animator animator;
+    private static bool _collectedArtForLevel = false;
     Vector2 lookDirection = new Vector2(1, 0);
     public ParticleSystem collectEffect;
     public ParticleSystem damageEffect;
@@ -95,17 +96,29 @@ Rigidbody2D _rb;
         isInvincible = false;
     }
 
-   
-    public void addArt(int x){
-        artCount +=x;
-      
-  
-            Instantiate(collectEffect, transform.position, Quaternion.identity);
+
+    public void AddArt(int x)
+    {
+        artCount += x;
+        _collectedArtForLevel = true;
+        //Find the tile object called BlockToFinalBoss
+        GameObject blockToFinalBoss = GameObject.Find("BlockToFinalBoss");
+        //If the tile object exists, set it to active
+        if (blockToFinalBoss != null)
+        {
+            blockToFinalBoss.SetActive(false);
+        }
+        var blockToLevelEnd = GameObject.Find("BlockToLevelEnd");
+        if (blockToLevelEnd != null)
+        {
+            blockToLevelEnd.SetActive(false);
+        }
+        PlayCollectSound();
+        Instantiate(collectEffect, transform.position, Quaternion.identity);
     }
 
     public void PlayCollectSound()
     {
         _audioSource.PlayOneShot(artCollect);
-
     }
 }
