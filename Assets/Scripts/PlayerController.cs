@@ -58,6 +58,17 @@ Rigidbody2D _rb;
         {
             animator.SetBool("Is Moving", false);
         }
+
+         RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+          if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                   
+                    character.DisplayDialog();
+                }
+            }
     }
 
     private void FixedUpdate()
@@ -101,6 +112,8 @@ Rigidbody2D _rb;
       
   
             Instantiate(collectEffect, transform.position, Quaternion.identity);
+
+ 
     }
 
     public void PlayCollectSound()
@@ -108,4 +121,5 @@ Rigidbody2D _rb;
         _audioSource.PlayOneShot(artCollect);
 
     }
+
 }
