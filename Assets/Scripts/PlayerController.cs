@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
     private float invincibleTime = 1.2f;
     private bool isInvincible = false;
     private BoxCollider2D _boxCollider;
+    private bool _paused;
     int artCount = 1;
     Animator animator;
     private static bool _collectedArtForLevel = false;
     Vector2 lookDirection = new Vector2(1, 0);
     public ParticleSystem collectEffect;
+    private GameObject _mainCamera;
     public ParticleSystem damageEffect;
+    private GameObject _canvas;
 
     private AudioSource _audioSource;
     public AudioClip artCollect;
@@ -28,16 +31,40 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        _paused = false;
         _rb = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         _audioSource.PlayOneShot(footstepsLanding);
+        _canvas = GameObject.Find("Canvas");
+        _mainCamera = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            switch (_paused)
+            {
+                case true:
+                    Time.timeScale = 1;
+                    _paused = false;
+                    //Pause the background music
+                    _mainCamera.GetComponent<AudioSource>().UnPause();
+                    Debug.Log("Unpause");
+                    break;
+                default:
+                    Time.timeScale = 0;
+                    _paused = true;
+                    //Unpause the background music
+                    _mainCamera.GetComponent<AudioSource>().Pause();
+                    Debug.Log("Paused");
+                    break;
+            }
+        }
+
         _horizontalInput = Input.GetAxis("Horizontal");
 
         _verticalInput = Input.GetAxis("Vertical");
@@ -60,16 +87,14 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Is Moving", false);
         }
 
-         RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
-          if (hit.collider != null)
-            {
-                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
-                if (character != null)
-                {
+        RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+        if (hit.collider == null) return;
+        NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+        if (character != null)
+        {
                    
-                    character.DisplayDialog();
-                }
-            }
+            character.DisplayDialog();
+        }
     }
 
     private void FixedUpdate()
@@ -83,18 +108,24 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("CollisionTiles")) return;
+        //Get the name of the tile you collided with
+        string tileName = other.gameObject.name;
+        Debug.Log(tileName);
         if (isInvincible) return;
         _audioSource.PlayOneShot(hitSound);
         if (health > 1)
         {
             health--;
             Debug.Log("Health: " + health);
+            //Set the heart child of the canvas to inactive of the health lost
+            _canvas.transform.GetChild(health + 1).gameObject.SetActive(false);
             Instantiate(damageEffect, transform.position, Quaternion.identity);
             StartCoroutine(Invincible());
         }
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            health = 6;
         }
     }
 

@@ -3,7 +3,12 @@ guid: 14331b80644f79d4b85bf0abde4d4b4c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - collectEffect: {fileID: 1510503249253587995, guid: 7cf287daf5c2b4818ab03c0bdb2d8326, type: 3}
+  - damageEffect: {fileID: 4545977299129630576, guid: 68c6d91c794754d118b1019ff8e1b2f4, type: 3}
+  - artCollect: {fileID: 8300000, guid: 5ab8fc664ca4d604f820e255005a664a, type: 3}
+  - footstepsLanding: {fileID: 8300000, guid: c134bf6bd85561b4b938c913b97b57c9, type: 3}
+  - hitSound: {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
