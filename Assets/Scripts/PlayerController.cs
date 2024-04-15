@@ -22,23 +22,29 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem collectEffect;
     private GameObject _mainCamera;
     public ParticleSystem damageEffect;
-    private GameObject _canvas;
+    private GameObject _healthCanvas;
 
     private AudioSource _audioSource;
     public AudioClip artCollect;
     public AudioClip footstepsLanding;
     public AudioClip hitSound;
+    public GameObject _pauseMenu;
+    private AudioSource _audioSource1;
+    private static readonly int Property = Animator.StringToHash("Look X");
 
     void Start()
     {
+
+        _mainCamera = GameObject.Find("Main Camera");
+        _audioSource1 = _mainCamera.GetComponent<AudioSource>();
         _paused = false;
         _rb = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
         _boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         _audioSource.PlayOneShot(footstepsLanding);
-        _canvas = GameObject.Find("Canvas");
-        _mainCamera = GameObject.Find("Main Camera");
+        _healthCanvas = GameObject.Find("HealthCanvas");
+        _pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,19 +54,13 @@ public class PlayerController : MonoBehaviour
         {
             switch (_paused)
             {
-                case true:
-                    Time.timeScale = 1;
-                    _paused = false;
-                    //Pause the background music
-                    _mainCamera.GetComponent<AudioSource>().UnPause();
-                    Debug.Log("Unpause");
-                    break;
-                default:
+                case false:
                     Time.timeScale = 0;
-                    _paused = true;
                     //Unpause the background music
-                    _mainCamera.GetComponent<AudioSource>().Pause();
+                    _audioSource1.Pause();
                     Debug.Log("Paused");
+                    _healthCanvas.SetActive(false);
+                    _pauseMenu.SetActive(true);
                     break;
             }
         }
@@ -76,16 +76,9 @@ public class PlayerController : MonoBehaviour
             lookDirection.Normalize();
         }
 
-        animator.SetFloat("Look X", _horizontalInput);
+        animator.SetFloat(Property, _horizontalInput);
 
-        if (_horizontalInput != 0)
-        {
-            animator.SetBool("Is Moving", true);
-        }
-        else
-        {
-            animator.SetBool("Is Moving", false);
-        }
+        animator.SetBool("Is Moving", _horizontalInput != 0);
 
         RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
         if (hit.collider == null) return;
@@ -118,7 +111,7 @@ public class PlayerController : MonoBehaviour
             health--;
             Debug.Log("Health: " + health);
             //Set the heart child of the canvas to inactive of the health lost
-            _canvas.transform.GetChild(health + 1).gameObject.SetActive(false);
+            _healthCanvas.transform.GetChild(health + 1).gameObject.SetActive(false);
             Instantiate(damageEffect, transform.position, Quaternion.identity);
             StartCoroutine(Invincible());
         }
