@@ -6,6 +6,11 @@ using Pathfinding;
 
 public class SoldierGrunt : MonoBehaviour
 {
+
+
+    //animation set up
+    Animator animator;
+    
     //target to attack
     [SerializeField] GameObject attackTarget;
 
@@ -51,13 +56,19 @@ public class SoldierGrunt : MonoBehaviour
 
         pathfinder.maxSpeed = speed;
 
+        animator = GetComponent<Animator>();
+
         //DisturbanceCall();
     }
+
+   
+
 
     void FixedUpdate(){
         HandleMovement();
         HandleAttack();
         HandleDialogue();
+       
         
     }
 

@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
     public void AddArt(int x)
     {
         artCount += x;
+        Instantiate(collectEffect, transform.position, Quaternion.identity);
         _collectedArtForLevel = true;
         //Find the tile object called BlockToFinalBoss
         GameObject blockToFinalBoss = GameObject.Find("BlockToFinalBoss");
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour
             blockToLevelEnd.SetActive(false);
         }
         PlayCollectSound();
-        Instantiate(collectEffect, transform.position, Quaternion.identity);
+        
     }
 
     public void PlayCollectSound()
