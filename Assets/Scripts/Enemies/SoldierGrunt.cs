@@ -82,6 +82,7 @@ public class SoldierGrunt : MonoBehaviour
     void HandleMovement(){
         pathfinder.maxSpeed = speed;
         if (!isAttacking){
+            animator.SetBool("Is Attacking", true);
             speed = 3.5f;
             if (Vector2.Distance(transform.position, moveTarget.transform.position) < 2f && attackTarget == null){
                 moveTarget.position = manager.GetAvailablePosition();
