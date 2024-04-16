@@ -97648,7 +97648,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -99745,6 +99745,7 @@ GameObject:
   - component: {fileID: 1249437659}
   - component: {fileID: 1249437658}
   - component: {fileID: 1249437661}
+  - component: {fileID: 1979730622}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -99844,10 +99845,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 442469096542457388, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2259843052985327523, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
       propertyPath: m_Name
       value: Pierre Baguette 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5592842829725727582, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
+    - target: {fileID: 5592842829725727582, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
+      propertyPath: artCollect
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ab8fc664ca4d604f820e255005a664a, type: 3}
+    - target: {fileID: 5592842829725727582, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
+      propertyPath: footstepsLanding
+      value: 
+      objectReference: {fileID: 8300000, guid: a35ec44331d4b514cabf31e928f058b5, type: 3}
     - target: {fileID: 7405079152948079988, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: -103
