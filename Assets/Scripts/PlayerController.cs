@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem collectEffect;
     private GameObject _mainCamera;
     public ParticleSystem damageEffect;
-    private GameObject _healthCanvas;
+    public GameObject _healthCanvas;
 
     private AudioSource _audioSource;
     public AudioClip artCollect;
@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         _audioSource.PlayOneShot(footstepsLanding);
-        _healthCanvas = GameObject.Find("HealthCanvas");
         _pauseMenu.SetActive(false);
     }
 
@@ -58,7 +57,6 @@ public class PlayerController : MonoBehaviour
                     Time.timeScale = 0;
                     //Unpause the background music
                     _audioSource1.Pause();
-                    Debug.Log("Paused");
                     _healthCanvas.SetActive(false);
                     _pauseMenu.SetActive(true);
                     break;
