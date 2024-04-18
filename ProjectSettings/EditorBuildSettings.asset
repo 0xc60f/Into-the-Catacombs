@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Help.unity
     guid: e0945eff3f0d5db4494d966de28c4085
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/Level1.unity
     guid: bbb7798ab8def3d43ae8cf5d119811eb
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
+    path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
