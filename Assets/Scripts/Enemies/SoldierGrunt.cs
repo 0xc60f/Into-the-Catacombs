@@ -4,13 +4,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Pathfinding;
 
-public class SoldierGrunt : MonoBehaviour
+public class SoldierGrunt : Soldier
 {
-
-
-    //animation set up
-    Animator animator;
-    
     //target to attack
     [SerializeField] GameObject attackTarget;
 
@@ -26,6 +21,10 @@ public class SoldierGrunt : MonoBehaviour
     //guard speed
     [SerializeField] float speed = 3f;
 
+
+    [SerializeField] GameObject head;
+
+    //a* depen
     AIPath pathfinder;
 
     AIDestinationSetter goToDest;
@@ -35,12 +34,24 @@ public class SoldierGrunt : MonoBehaviour
 
     [SerializeField] LayerMask stopMovementLayerMask;
 
+    //attack properties
+    int maxClipSize = 30;
+
+    int currClipSize = 30;
+
+    int reloadTime = 300;
+
+    float fireRate = 0.06f;
+
+    int frameReloaded = -1;
+
+    bool isShooting = false;
+
     //fire angle deviation
     [SerializeField] float accuracy;
 
     //behavior types
-    bool isAttacking = false;
-
+    [SerializeField] int behaviorType = 0;
 
     void Awake(){
         goToDest = GetComponent<AIDestinationSetter>();
@@ -56,111 +67,122 @@ public class SoldierGrunt : MonoBehaviour
 
         pathfinder.maxSpeed = speed;
 
-        animator = GetComponent<Animator>();
-
         //DisturbanceCall();
     }
-
-   
-
 
     void FixedUpdate(){
         HandleMovement();
         HandleAttack();
-        HandleDialogue();
-       
-        
+
     }
 
+
     #region movement
-    /*0 = wandering
-    1: suppress
-    2: intercept up close
-    3: running the hell away
-    4: investigate
-    */
+    
     void HandleMovement(){
         pathfinder.maxSpeed = speed;
-        if (!isAttacking){
+        if (behaviorType == 0){
             speed = 3.5f;
-            if (Vector2.Distance(transform.position, moveTarget.transform.position) < 2f && attackTarget == null){
+            if ((pathfinder.reachedEndOfPath || !pathfinder.hasPath) && attackTarget == null){
                 moveTarget.position = manager.GetAvailablePosition();
             }
-        } 
+        }
         else{
 
         }
+        
     }
-
 
     #endregion
 
     #region Attack
 
+    bool targetInCrosshair = false;
+
+    Vector2 lastKnownPosition;
+
     void HandleAttack(){
-        //if enemy in crosshair and in line of sight, fire
+        
         if (attackTarget != null){
-            
+            ShootBullet(accuracy);
+        }
+        
+        
+    }
+
+    IEnumerator Suppress(int numBullets){
+        isShooting = true;
+        for (int i = 0; i < numBullets; i++){
+            ShootBullet(accuracy * 1.2f);
+            float secs = fireRate * Random.Range(1f, 1.5f);
+            //if (manager.timeSlow)
+                //secs *= manager.slowFactor;
+            yield return new WaitForSeconds(secs);
+        }
+        isShooting = false;
+    }
+
+    IEnumerator SlowSuppress(int numBullets){
+        isShooting = true;
+        for (int i = 0; i < numBullets; i++){
+            ShootBullet(accuracy/2f);
+            float secs = fireRate * Random.Range(1.6f, 3.5f);
+            //if (manager.timeSlow)
+              //  secs *= manager.slowFactor;
+            yield return new WaitForSeconds(secs);
+        }
+        isShooting = false;
+    }
+
+    void Reload(){
+        frameReloaded = manager._fixedFrame + reloadTime;
+    }
+
+    void ShootBullet(float dev){
+        currClipSize -= 1;
+        GameObject proj = Instantiate(projectile, transform);//, (Vector2) transform.position + new Vector2(0f, 1.8f) * , transform.rotation);
+        proj.transform.parent = null;
+
+        proj.transform.up = transform.up + new Vector3(Random.Range(-dev, dev), Random.Range(-dev, dev), 0);
+
+        if (manager.timeSlow)
+        {
+            proj.GetComponent<Projectile>().vel /= manager.slowFactor;
+        }
+        Debug.Log("shoot");
+    }
+
+    public void SetAttackTarget(GameObject obj){
+        if (obj.CompareTag("Player")){
+            attackTarget = obj;
         }
     }
 
-    void ShootBullet(){
-        GameObject proj = Instantiate(projectile, transform);
-        proj.transform.parent = null;
-
-        proj.transform.up = 
-            attackTarget.transform.position - transform.position + new Vector3(Random.Range(-1 * accuracy, accuracy), Random.Range(-1 * accuracy, accuracy), 0);
-
-    }
     #endregion
 
     #region Dialogue
-
-    //dialogue variables
-    [SerializeField] Dialogue dialogue;
-
-    string[] dialogueSamples = {
-    "Wasserschwein",
-    "Zufallige Worter!",
-    "Laternenpfahl",
-    "Insektenfresser",
-    "Pappmaus",
-    "zufallige Phrasen",
-    "brauche Wasser",
-    "Ich bin mude",
-    "zu viele Scheren"
-    };
-
-    void HandleDialogue(){
-        if (Random.Range(0, 1000) == 1){
-            string sent = dialogueSamples[Random.Range(0, dialogueSamples.Length)];
-            dialogue.StopText();
-            dialogue.StartSentence(sent);
-        }
-    }
-
+    
     #endregion
     
-    void OnTriggerEnter2D(Collider2D hit){
-        /*RaycastHit2D hit = Physics2D.Raycast(transform.position, coll.transform.position, 100f, enemyLayers);
-        if (hit.collider != null){
-            GameObject target = hit.collider.gameObject;
-            
-        }*/
-        if (hit.GetComponent<Collider>().gameObject.tag == "Player"){
-            isAttacking = true;
-            attackTarget = hit.GetComponent<Collider>().gameObject;
+    void OnTriggerEnter2D(Collider2D coll){
+        if (coll.gameObject.CompareTag("Player")){
+            attackTarget = coll.gameObject;
         }
+        
     }
 
-    void OnTriggerExit2D(Collider2D hit){
-        /*attackTarget = null;
-        pathfinder.enableRotation = true;
-        pathfinder.maxSpeed = 3.5f;*/
-        if (hit.GetComponent<Collider>().gameObject.tag == "Player"){
-            isAttacking = false;
-            attackTarget = null;//hit.collider.gameObject;
+    void OnTriggerExit2D(Collider2D coll){
+        if (coll.gameObject.CompareTag("Player")){
+            attackTarget = null;
+            lastKnownPosition = coll.gameObject.transform.position;
         }
+
     }
 
+
+}
+
+abstract public class Soldier: MonoBehaviour
+{
+    
 }

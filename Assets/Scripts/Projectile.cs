@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] public float vel;
 
+    [SerializeField] BulletHitSparks hitParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +19,12 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.position += transform.up * (vel * Time.deltaTime);
-
+        this.gameObject.transform.position += transform.up * vel * Time.deltaTime;
     }
 
     void OnCollisionEnter2D(Collision2D c)
     {
+        hitParticles.Flash(c.contacts[0].point);
         Destroy(gameObject);
     }
 
