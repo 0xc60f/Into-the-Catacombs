@@ -33,6 +33,7 @@ public class SoldierGrunt : Soldier
     [SerializeField] LayerMask enemyLayers;
 
     [SerializeField] LayerMask stopMovementLayerMask;
+    Animator animator;
 
     //attack properties
     int maxClipSize = 30;
@@ -81,7 +82,7 @@ public class SoldierGrunt : Soldier
     
     void HandleMovement(){
         pathfinder.maxSpeed = speed;
-        if (!isAttacking){
+        if (!isShooting){
             animator.SetBool("Is Attacking", true);
             speed = 3.5f;
             if ((pathfinder.reachedEndOfPath || !pathfinder.hasPath) && attackTarget == null){
