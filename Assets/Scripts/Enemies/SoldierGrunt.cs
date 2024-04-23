@@ -81,13 +81,13 @@ public class SoldierGrunt : Soldier
     
     void HandleMovement(){
         pathfinder.maxSpeed = speed;
-        if (!isAttacking){
-            animator.SetBool("Is Attacking", true);
+        // if (!isAttacking){
+            
             speed = 3.5f;
             if ((pathfinder.reachedEndOfPath || !pathfinder.hasPath) && attackTarget == null){
                 moveTarget.position = manager.GetAvailablePosition();
             }
-        }
+        // }
         else{
 
         }
