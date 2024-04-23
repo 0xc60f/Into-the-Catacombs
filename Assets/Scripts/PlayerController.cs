@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _mainCamera;
     public ParticleSystem damageEffect;
     public GameObject _healthCanvas;
+    public AudioClip _deathSound;
 
     private AudioSource _audioSource;
     public AudioClip artCollect;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         _audioSource.PlayOneShot(footstepsLanding);
         _pauseMenu.SetActive(false);
+        StartCoroutine(RegenerateHealth());
     }
 
     // Update is called once per frame
@@ -115,6 +117,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            _audioSource.PlayOneShot(_deathSound);
+            StartCoroutine(WaitForDeathSound());
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             health = 6;
         }
@@ -154,6 +158,22 @@ public class PlayerController : MonoBehaviour
     public void PlayCollectSound()
     {
         _audioSource.PlayOneShot(artCollect);
+    }
+
+    //Make an IEnumerator that, every 60 seconds, adds 1 back to the player's health and redraws it on the canvas
+    public IEnumerator RegenerateHealth()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(20);
+            if (health >= 6) continue;
+            health++;
+            _healthCanvas.transform.GetChild(health).gameObject.SetActive(true);
+        }
+    }
+    public IEnumerator WaitForDeathSound()
+    {
+        yield return new WaitForSeconds(_deathSound.length);
     }
 
 }
