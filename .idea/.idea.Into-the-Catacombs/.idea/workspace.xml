@@ -5,50 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e60f48fa-62c7-41e7-b9be-1e06ea116f5f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Audio/gate_1-93440.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Audio/gate_1-93440.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Demo SceneSettings.lighting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Demo SceneSettings.lighting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Objects/torch.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Objects/torch.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Sewer Exit.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Sewer Exit.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Torch.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Torch.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/RPGW_Caves/Scenes/DemoSettings.lighting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/RPGW_Caves/Scenes/DemoSettings.lighting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/FinishLevel.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Into-the-Catacombs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Into-the-Catacombs/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Pierre Baguette Animation Sprites/Materials/1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Pierre Baguette Animation Sprites/Materials/1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Environment/Tiles/Catacombs.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Environment/Tiles/Catacombs.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/RPGW_Caves/Scenes/Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/RPGW_Caves/Scenes/Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/RPGW_Caves/Scenes/DemoSettings.lighting" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/RPGW_Caves/Scenes/DemoSettings.lighting" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/RPGW_Caves/Scenes/DemoSettings.lighting.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/RPGW_Caves/Scenes/DemoSettings.lighting.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Demo Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Demo Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Effects/Materials/Explosion.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Effects/Materials/Explosion.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Food &amp; Plants/Vegetation/Materials/Moss1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Food &amp; Plants/Vegetation/Materials/Moss1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Food &amp; Plants/Vegetation/Materials/Mushroom.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Food &amp; Plants/Vegetation/Materials/Mushroom.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Items &amp; Icons/Gothic/Materials/Skull.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Items &amp; Icons/Gothic/Materials/Skull.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Items &amp; Icons/Grungy/Materials/WoodCrate.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Brackeys/2D Mega Pack/Items &amp; Icons/Grungy/Materials/WoodCrate.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Collectibles/Materials/Necklace Collectible.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Collectibles/Materials/Necklace Collectible.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Objects/Catacombs.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Catacombs.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/A Lady in Gold Collectible.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/A Lady in Gold Collectible.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Mona Lisa.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Mona Lisa.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Necklace Collectible.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Necklace Collectible.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pierre Baguette 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Pierre Baguette 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Portrait Collectible.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Portrait Collectible.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/RPGW_Caves/Scenes/Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/RPGW_Caves/Scenes/Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Tutorial.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Search.settings" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Search.settings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/SoldierGrunt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/SoldierGrunt.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +145,7 @@
       <workItem from="1713890103477" duration="1338000" />
       <workItem from="1714059615516" duration="2224000" />
       <workItem from="1714353353828" duration="2036000" />
+      <workItem from="1714492263428" duration="390000" />
     </task>
     <servers />
   </component>
