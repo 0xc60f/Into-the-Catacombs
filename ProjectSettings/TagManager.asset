@@ -8,6 +8,7 @@ TagManager:
   - GroundTiles
   - LabTeam
   - Projectile
+  - Exit
   layers:
   - Default
   - TransparentFX

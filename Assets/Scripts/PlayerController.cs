@@ -17,14 +17,14 @@ public class PlayerController : MonoBehaviour
     private bool _paused;
     int artCount = 1;
     Animator animator;
-    private static bool _collectedArtForLevel = false;
+    public bool _collectedArtForLevel = false;
     Vector2 lookDirection = new Vector2(1, 0);
     public ParticleSystem collectEffect;
     private GameObject _mainCamera;
     public ParticleSystem damageEffect;
     public GameObject _healthCanvas;
     public AudioClip _deathSound;
-
+    public bool _isFrozen = false;
     private AudioSource _audioSource;
     public AudioClip artCollect;
     public AudioClip footstepsLanding;
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (_isFrozen) return;
         _horizontalInput = Input.GetAxis("Horizontal");
 
         _verticalInput = Input.GetAxis("Vertical");
@@ -85,13 +86,14 @@ public class PlayerController : MonoBehaviour
         NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
         if (character != null)
         {
-                   
+
             character.DisplayDialog();
         }
     }
 
     private void FixedUpdate()
     {
+        if (_isFrozen) return;
         Vector2 pos = _rb.position;
         pos.x += _horizontalInput * speed * Time.deltaTime;
         pos.y += _verticalInput * speed * Time.deltaTime;
@@ -100,10 +102,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("CollisionTiles")) return;
+        if (!other.gameObject.CompareTag("CollisionTiles") && !other.gameObject.CompareTag("Exit")) return;
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            var tileName = other.gameObject.name;
+            Debug.Log(tileName);
+            if (!_collectedArtForLevel) return;
+            other.gameObject.GetComponent<AudioSource>().PlayOneShot(other.gameObject.GetComponent<AudioSource>().clip);
+            StartCoroutine(WaitForSewerSound(other.gameObject));
+            //Wait until the sound has finished playing
+
+            return;
+        }
         //Get the name of the tile you collided with
-        string tileName = other.gameObject.name;
-        Debug.Log(tileName);
+
         if (isInvincible) return;
         _audioSource.PlayOneShot(hitSound);
         if (health > 1)
@@ -117,10 +129,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            _healthCanvas.transform.GetChild(1).gameObject.SetActive(false);
+            StopCoroutine(nameof(RegenerateHealth));
             _audioSource.PlayOneShot(_deathSound);
             StartCoroutine(WaitForDeathSound());
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            health = 6;
+            return;
         }
     }
 
@@ -155,13 +168,13 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void PlayCollectSound()
+    private void PlayCollectSound()
     {
         _audioSource.PlayOneShot(artCollect);
     }
 
     //Make an IEnumerator that, every 60 seconds, adds 1 back to the player's health and redraws it on the canvas
-    public IEnumerator RegenerateHealth()
+    private IEnumerator RegenerateHealth()
     {
         while (true)
         {
@@ -173,7 +186,25 @@ public class PlayerController : MonoBehaviour
     }
     public IEnumerator WaitForDeathSound()
     {
-        yield return new WaitForSeconds(_deathSound.length);
+        _isFrozen = true;
+        while (_audioSource.isPlaying)
+            yield return null;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _collectedArtForLevel = false;
+        health = 6;
+        _isFrozen = false;
+
+    }
+
+    private IEnumerator WaitForSewerSound(GameObject other)
+    {
+        _isFrozen = true;
+        while (other.GetComponent<AudioSource>().isPlaying)
+            yield return null;
+        //Make the rigidbody of the playe
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        _collectedArtForLevel = false;
+        _isFrozen = false;
     }
 
 }
