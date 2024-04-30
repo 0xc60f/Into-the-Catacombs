@@ -88,7 +88,7 @@ public class SoldierGrunt : Soldier
             if ((pathfinder.reachedEndOfPath || !pathfinder.hasPath) && attackTarget == null){
                 moveTarget.position = manager.GetAvailablePosition();
             }
-        }
+        // }
         else{
 
         }
@@ -187,4 +187,5 @@ public class SoldierGrunt : Soldier
 abstract public class Soldier: MonoBehaviour
 {
     
+}
 }
