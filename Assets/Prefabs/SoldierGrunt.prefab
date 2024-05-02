@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2917318299004028124}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MoveTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5836303367911871971}
   - component: {fileID: 716997345363194857}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1661158069
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6528983652267077257}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: SoldierGrunt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 4703963258756461775}
   - component: {fileID: 576126590252856809}
   - component: {fileID: 3042419492683599212}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1425691895796813351}
   - component: {fileID: 4963118644617739733}
   - component: {fileID: 6162445906690008327}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3985747620660628805}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: AttackTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,9 +451,10 @@ GameObject:
   - component: {fileID: 8369981785365974660}
   - component: {fileID: 2832151441516076910}
   - component: {fileID: 2279763218582551885}
-  m_Layer: 11
+  - component: {fileID: 3514383769522278244}
+  m_Layer: 0
   m_Name: Grunt
-  m_TagString: LabTeam
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -467,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 8922175488792463364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.465, y: -20.549, z: 0}
+  m_LocalPosition: {x: -162.5, y: -20.549, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -513,7 +514,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1661158069
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.92156863, b: 1, a: 1}
@@ -593,7 +594,7 @@ MonoBehaviour:
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 1
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
     mode: 2
     interval: 0.5
@@ -617,7 +618,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8922175488792463364}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -676,16 +677,14 @@ MonoBehaviour:
   moveTarget: {fileID: 2917318299004028124}
   projectile: {fileID: 6939543509157324385, guid: 57b6c982e22a5504fbc4245d1db8f14c, type: 3}
   speed: 3.5
-  head: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 1664
+    m_Bits: 640
   stopMovementLayerMask:
     serializedVersion: 2
     m_Bits: 512
   accuracy: 0.1
   behaviorType: 0
-  dialogue: {fileID: 6162445906690008327}
 --- !u!50 &2279763218582551885
 Rigidbody2D:
   serializedVersion: 4
@@ -713,3 +712,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &3514383769522278244
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922175488792463364}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 10
