@@ -98608,6 +98608,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 09746bcc1db094702bcee2fe95c6bc1e, type: 3}
+    - target: {fileID: 4740358893246197695, guid: a90982560b6d849ba8e120bbcb4dac1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8015369590036850566, guid: a90982560b6d849ba8e120bbcb4dac1e, type: 3}
       propertyPath: m_Controller
       value: 
@@ -98617,7 +98621,20 @@ PrefabInstance:
       value: 'The Nazis have plundered our museums and executed
 
         those who
-        curated the art. You are lucky to stand here today.'
+        curated the art. You are lucky to stand here today. As your first task, you
+        must retrieve a ruby necklace belonging to a Jewish heiress. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033610412960491380, guid: a90982560b6d849ba8e120bbcb4dac1e, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033610412960491380, guid: a90982560b6d849ba8e120bbcb4dac1e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033610412960491380, guid: a90982560b6d849ba8e120bbcb4dac1e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
