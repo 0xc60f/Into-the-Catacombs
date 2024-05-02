@@ -155,9 +155,7 @@ public class SoldierGrunt : Soldier
     void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.CompareTag("Player")){
             attackTarget = coll.gameObject;
-            Debug.Log("player in");
         }
-        Debug.Log("obj ent");
     }
 
 
