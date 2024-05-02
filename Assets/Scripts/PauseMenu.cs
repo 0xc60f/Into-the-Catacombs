@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject _healthCanvas;
     public void HomeMenuClick()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
