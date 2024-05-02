@@ -387,7 +387,6 @@ MonoBehaviour:
   moveTarget: {fileID: 0}
   projectile: {fileID: 6939543509157324385, guid: 57b6c982e22a5504fbc4245d1db8f14c, type: 3}
   speed: 3
-  head: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -100864,6 +100863,10 @@ PrefabInstance:
     - target: {fileID: 2259843052985327523, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
       propertyPath: m_Name
       value: Pierre Baguette 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592842829725727582, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
+      propertyPath: speed
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 5592842829725727582, guid: 0cd7e548c46eeb347b782ece0cc35ada, type: 3}
       propertyPath: hitSound
