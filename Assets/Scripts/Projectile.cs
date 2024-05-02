@@ -25,6 +25,9 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D c)
     {
         hitParticles.Flash(c.contacts[0].point);
+        if (c.gameObject.tag == "Player"){
+            c.gameObject.GetComponent<PlayerController>().ChangeHealth();
+        }
         Destroy(gameObject);
     }
 

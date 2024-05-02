@@ -70,7 +70,6 @@ public class SoldierGrunt : Soldier
     void FixedUpdate(){
         HandleMovement();
         HandleAttack();
-        
     }
 
 
@@ -122,8 +121,8 @@ public class SoldierGrunt : Soldier
     IEnumerator SlowSuppress(int numBullets){
         isShooting = true;
         for (int i = 0; i < numBullets; i++){
-            ShootBullet(accuracy/2f);
-            float secs = fireRate * Random.Range(1.6f, 3.5f);
+            ShootBullet(accuracy);
+            float secs = fireRate * Random.Range(15f, 25f);
             //if (manager.timeSlow)
               //  secs *= manager.slowFactor;
             yield return new WaitForSeconds(secs);
@@ -136,6 +135,8 @@ public class SoldierGrunt : Soldier
     }
 
     void ShootBullet(float dev){
+        if (attackTarget == null)
+            return;
         currClipSize -= 1;
         GameObject proj = Instantiate(projectile, transform);//, (Vector2) transform.position + new Vector2(0f, 1.8f) * , transform.rotation);
         proj.transform.parent = null;
@@ -146,7 +147,6 @@ public class SoldierGrunt : Soldier
         {
             proj.GetComponent<Projectile>().vel /= manager.slowFactor;
         }
-        Debug.Log("shoot");
     }
 
 

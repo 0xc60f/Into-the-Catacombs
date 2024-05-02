@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("CollisionTiles") && !other.gameObject.CompareTag("Exit")) return;
+        if (!other.gameObject.CompareTag("CollisionTiles") && !other.gameObject.CompareTag("Exit") && !other.gameObject.CompareTag("Projectile")) return;
         if (other.gameObject.CompareTag("Exit"))
         {
             var tileName = other.gameObject.name;
@@ -111,11 +111,15 @@ public class PlayerController : MonoBehaviour
             other.gameObject.GetComponent<AudioSource>().PlayOneShot(other.gameObject.GetComponent<AudioSource>().clip);
             StartCoroutine(WaitForSewerSound(other.gameObject));
             //Wait until the sound has finished playing
-
+            
             return;
         }
         //Get the name of the tile you collided with
 
+       ChangeHealth();
+    }
+
+    public void ChangeHealth(){
         if (isInvincible) return;
         _audioSource.PlayOneShot(hitSound);
         if (health > 1)
