@@ -6,9 +6,9 @@ TagManager:
   tags:
   - CollisionTiles
   - GroundTiles
-  - LabTeam
   - Projectile
   - Exit
+  - GameManager
   layers:
   - Default
   - TransparentFX

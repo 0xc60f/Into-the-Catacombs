@@ -21,9 +21,6 @@ public class SoldierGrunt : Soldier
     //guard speed
     [SerializeField] float speed = 3f;
 
-
-    [SerializeField] GameObject head;
-
     //a* depen
     AIPath pathfinder;
 
@@ -57,7 +54,7 @@ public class SoldierGrunt : Soldier
     void Awake(){
         goToDest = GetComponent<AIDestinationSetter>();
         pathfinder = GetComponent<AIPath>();
-        manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        manager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
     void Start(){
@@ -68,13 +65,12 @@ public class SoldierGrunt : Soldier
 
         pathfinder.maxSpeed = speed;
 
-        //DisturbanceCall();
     }
 
     void FixedUpdate(){
         HandleMovement();
         HandleAttack();
-
+        
     }
 
 
@@ -82,17 +78,15 @@ public class SoldierGrunt : Soldier
     
     void HandleMovement(){
         pathfinder.maxSpeed = speed;
-        if (attackTarget == null)
-        {
+        if (attackTarget == null){
             //animator.SetBool("Is Attacking", true);
             speed = 3.5f;
-            if ((pathfinder.reachedEndOfPath || !pathfinder.hasPath) && attackTarget == null)
-            {
+            if ((pathfinder.reachedEndOfPath || !pathfinder.hasPath) && attackTarget == null){
                 moveTarget.position = manager.GetAvailablePosition();
             }
         }
         else{
-
+            moveTarget.position = attackTarget.transform.position;
         }
         
     }
@@ -107,10 +101,9 @@ public class SoldierGrunt : Soldier
 
     void HandleAttack(){
         
-        if (attackTarget != null){
-            ShootBullet(accuracy);
+        if (attackTarget != null && !isShooting){
+            StartCoroutine(SlowSuppress(5));
         }
-        
         
     }
 
@@ -147,7 +140,7 @@ public class SoldierGrunt : Soldier
         GameObject proj = Instantiate(projectile, transform);//, (Vector2) transform.position + new Vector2(0f, 1.8f) * , transform.rotation);
         proj.transform.parent = null;
 
-        proj.transform.up = transform.up + new Vector3(Random.Range(-dev, dev), Random.Range(-dev, dev), 0);
+        proj.transform.up = attackTarget.transform.position - transform.position + new Vector3(Random.Range(-dev, dev), Random.Range(-dev, dev), 0);
 
         if (manager.timeSlow)
         {
@@ -156,29 +149,23 @@ public class SoldierGrunt : Soldier
         Debug.Log("shoot");
     }
 
-    public void SetAttackTarget(GameObject obj){
-        if (obj.CompareTag("Player")){
-            attackTarget = obj;
-        }
-    }
 
     #endregion
 
-    #region Dialogue
-    
-    #endregion
-    
     void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.CompareTag("Player")){
             attackTarget = coll.gameObject;
+            Debug.Log("player in");
         }
-        
+        Debug.Log("obj ent");
     }
+
+
+    
 
     void OnTriggerExit2D(Collider2D coll){
         if (coll.gameObject.CompareTag("Player")){
             attackTarget = null;
-            lastKnownPosition = coll.gameObject.transform.position;
         }
 
     }
