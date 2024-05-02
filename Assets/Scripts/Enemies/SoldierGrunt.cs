@@ -26,6 +26,9 @@ public class SoldierGrunt : Soldier
 
     AIDestinationSetter goToDest;
 
+    public AudioClip projectileSound;
+
+    private AudioSource _audioSource;
     //layers to ignore when detecting targets
     [SerializeField] LayerMask enemyLayers;
 
@@ -55,6 +58,7 @@ public class SoldierGrunt : Soldier
         goToDest = GetComponent<AIDestinationSetter>();
         pathfinder = GetComponent<AIPath>();
         manager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Start(){
@@ -147,6 +151,7 @@ public class SoldierGrunt : Soldier
         {
             proj.GetComponent<Projectile>().vel /= manager.slowFactor;
         }
+        _audioSource.PlayOneShot(projectileSound);
     }
 
 
