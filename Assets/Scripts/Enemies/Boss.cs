@@ -45,6 +45,7 @@ public class Boss: MonoBehaviour
     int frameReloaded = -1;
 
     bool isShooting = false;
+    public int numLives;
 
     //fire angle deviation
     [SerializeField] float accuracy;
@@ -56,6 +57,7 @@ public class Boss: MonoBehaviour
         goToDest = GetComponent<AIDestinationSetter>();
         pathfinder = GetComponent<AIPath>();
         manager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        numLives = 3;
     }
 
     void Start(){

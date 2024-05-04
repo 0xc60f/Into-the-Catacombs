@@ -114,6 +114,22 @@ public class PlayerController : MonoBehaviour
             
             return;
         }
+
+        if (other.gameObject.name == "PersonCollide")
+        {
+            Debug.Log("ok");
+            //Find the sibling with the name Grunt
+            GameObject grunt = other.transform.parent.Find("Grunt").gameObject;
+            Boss boss = grunt.GetComponent<Boss>();
+            if (boss.numLives > 0)
+            {
+                boss.numLives--;
+            }
+            else
+            {
+                Destroy(other.transform.parent.gameObject);
+            }
+        }
         //Get the name of the tile you collided with
 
        ChangeHealth();
