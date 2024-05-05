@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Exit
   - GameManager
+  - FinalCutscene
   layers:
   - Default
   - TransparentFX

@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Pathfinding;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Boss: MonoBehaviour
 {
@@ -148,21 +151,21 @@ public class Boss: MonoBehaviour
 
     #endregion
 
-    void OnTriggerEnter2D(Collider2D coll){
-        if (coll.gameObject.CompareTag("Player")){
-            attackTarget = coll.gameObject;
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (!coll.gameObject.CompareTag("Player")) return;
+        attackTarget = coll.gameObject;
+        if (numLives > 1)
+            numLives--;
+        else
+        {
+            gameObject.transform.parent.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            SceneManager.LoadScene(0);
         }
     }
 
 
-    
-
-    void OnTriggerExit2D(Collider2D coll){
-        if (coll.gameObject.CompareTag("Player")){
-            attackTarget = null;
-        }
-
-    }
 
 
 }

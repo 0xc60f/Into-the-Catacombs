@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NonPlayerCharacter : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class NonPlayerCharacter : MonoBehaviour
             if (timerDisplay < 0)
             {
                 dialogBox.SetActive(false);
+                if (gameObject.name == "FinalCutscene")
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
             }
         }
     }
